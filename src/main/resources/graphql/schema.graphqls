@@ -1,0 +1,46 @@
+# Définition du schéma GraphQL
+enum TypeCompte {
+    COURANT
+    EPARGNE
+}
+
+type Query {
+    getComptes(type: TypeCompte, minSolde: Float): [Compte]
+    getallComptesPagination( type: TypeCompte,minSolde: Float,first: Int = 0,offset: Int = 10): ComptePage
+    getCompteById(id: ID): Compte
+    totalSolde: SoldeStats
+    compteType(type: TypeCompte): [Compte]
+}
+type ComptePage {
+    content: [Compte!]
+    totalPages: Int
+    totalElements: Int
+    size: Int
+    number: Int
+}
+
+type Compte {
+    id: ID
+    solde: Float
+    dateCreation: String
+    type: TypeCompte
+}
+
+type Mutation {
+    createCompte(compte:CompteRequest):Compte
+    deleteCompte(id: ID): Boolean
+}
+
+input CompteRequest {
+    solde: Float
+    dateCreation: String
+    type: TypeCompte
+}
+
+
+# Définition du type SoldeStats
+type SoldeStats {
+    count: Int    # Nombre total de comptes
+    sum: Float    # Somme des soldes
+    average: Float # Moyenne des soldes
+}
