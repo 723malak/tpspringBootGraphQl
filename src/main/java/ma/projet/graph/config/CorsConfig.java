@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Autoriser tous les chemins
-                        .allowedOrigins("http://localhost:5173") // Remplacez par l'URL de votre client (React, Angular, etc.)
+                        .allowedOrigins("http://localhost:5174") // Remplacez par l'URL de votre client (React, Angular, etc.)
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Méthodes autorisées
                         .allowedHeaders("*") // En-têtes autorisés
                         .allowCredentials(true); // Autoriser les cookies
